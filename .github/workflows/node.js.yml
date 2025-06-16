@@ -44,6 +44,15 @@ jobs:
           done
       - name: Install dependencies
         run: npm install
+      - name: Create users table
+        run: |
+          mysql -h127.0.0.1 -uroot -p449217 lab -e "
+          CREATE TABLE IF NOT EXISTS users (
+            username VARCHAR(255) PRIMARY KEY,
+            firstname VARCHAR(255),
+            lastname VARCHAR(255)
+            );
+          "
       - name: Run tests
         run: npm test
         env:
