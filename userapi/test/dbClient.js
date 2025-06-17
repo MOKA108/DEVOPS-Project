@@ -3,7 +3,7 @@ let db
 
 describe('MySQL', () => {
   before(() => {
-    db = require('../src/dbClient')
+    db = require('../dbClient')
   })
 
   it('should connect to MySQL', (done) => {

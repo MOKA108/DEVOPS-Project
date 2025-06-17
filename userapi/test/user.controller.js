@@ -1,7 +1,7 @@
 const chai = require('chai')
 const { expect } = require('chai')
-const userController = require('../src/controllers/user')
-const db = require('../src/dbClient')
+const userController = require('../controllers/user')
+const db = require('../dbClient')
 
 describe('User', () => {
   beforeEach((done) => {

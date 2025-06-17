@@ -1,5 +1,5 @@
 const { expect } = require('chai')
-const configure = require('../src/configure')
+const configure = require('../configure')
 
 describe('Configure', () => {
   it('load default json configuration file', () => {
