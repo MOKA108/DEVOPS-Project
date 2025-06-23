@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: userapi
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - istio-system/ingressgateway
+  http:
+    - route:
+        - destination:
+            host: userapi
+            subset: v1
+          weight: 50
+        - destination:
+            host: userapi
+            subset: v2
+          weight: 50
