@@ -1,0 +1,113 @@
+- hosts: all
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+    - name: Update apt
+      apt:
+        update_cache: yes
+
+    # À placer dans ton playbook avant l'installation des dépendances npm
+    - name: Add NodeSource Node.js 18.x repo
+      apt:
+      name: curl
+      state: present
+  
+    - name: Download and run NodeSource setup script
+      shell: curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+      args:
+       warn: false
+  
+    - name: Install Node.js 18.x
+      apt:
+        name: nodejs
+        state: present
+        update_cache: yes
+    - name: Mettre à jour npm à la dernière version stable
+      npm:
+        name: npm
+        global: yes
+        state: latest
+
+    - name: Vérifier la version de node
+      command: node -v
+      register: node_version
+  
+    - name: Afficher la version de node
+      debug:
+       var: node_version.stdout
+
+    - name: Afficher la version de npm
+      command: npm -v
+      register: npm_version
+    
+    - name: Debug npm version
+      debug:
+      var: npm_version.stdout
+
+    - name: Install MySQL server
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Set MySQL root password
+      community.mysql.mysql_user:
+        name: root
+        host: 127.0.0.1
+        password: "449217"
+        login_user: root
+        login_password: "449217"
+        login_host: 127.0.0.1
+        login_port: 3306
+        login_unix_socket: null
+        state: present
+
+    - name: Install build-essential (for npm modules)
+      apt:
+        name: build-essential
+        state: present
+
+    - name: Install PyMySQL library for Ansible MySQL modules
+      apt:
+        name: python3-pymysql
+        state: present
+
+    - name: Start MySQL service
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+
+    - name: Create MySQL user
+      community.mysql.mysql_user:
+        name: root
+        password: "449217"
+        priv: 'lab.*:ALL'
+        host: 127.0.0.1
+        state: present
+        login_user: root
+        login_password: "449217"
+        login_host: 127.0.0.1
+        login_port: 3306
+        login_unix_socket: null
+
+    - name: Create users table
+      community.mysql.mysql_db:
+        name: lab
+        state: import
+        target: /home/vagrant/app/iac/playbooks/schema.sql   # <-- adapte ce chemin si besoin
+        login_user: root
+        login_password: "449217"
+        login_host: 127.0.0.1
+        login_port: 3306
+        login_unix_socket: null
+
+    - name: Install npm dependencies
+      npm:
+        path: /home/vagrant/app/userapi   # <-- adapte ce chemin
+
+    - name: Start the app
+      shell: |
+        nohup npm start > app.log 2>&1 &
+      args:
+        chdir: /home/vagrant/app/userapi   # <-- adapte ce chemin

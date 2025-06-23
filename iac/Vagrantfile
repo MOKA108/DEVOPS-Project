@@ -1,0 +1,11 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+  config.vm.network "forwarded_port", guest: 3000, host: 3000
+  config.vm.synced_folder "../", "/vagrant"
+  config.vm.synced_folder "../", "/home/vagrant/app"
+  config.vm.provision "ansible_local" do |ansible|
+    ansible.playbook = "/home/vagrant/app/playbooks/provision.yml"
+    ansible.become = true
+    ansible.compatibility_mode = "2.0"
+  end
+end

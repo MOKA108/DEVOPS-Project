@@ -36,7 +36,7 @@ app.use((req, res) => {
   res.status(404).send('Route not found')
 })
 
-const server = app.listen(port, (err) => {
+const server = app.listen(port, '0.0.0.0', (err) => {
   if (err) throw err
   console.log("Server listening the port " + port)
 })
