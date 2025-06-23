@@ -25,7 +25,6 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=3
-
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
@@ -43,7 +42,9 @@ jobs:
             sleep 2
           done
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd userapi
+          npm install
       - name: Create users table
         run: |
           mysql -h127.0.0.1 -uroot -p449217 lab -e "
@@ -54,7 +55,9 @@ jobs:
             );
           "
       - name: Run tests
-        run: npm test
+        run: |
+          cd userapi
+          npm test
         env:
           MYSQL_HOST: 127.0.0.1
           MYSQL_USER: root
