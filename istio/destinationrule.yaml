@@ -3,7 +3,7 @@ kind: DestinationRule
 metadata:
   name: userapi
 spec:
-  host: userapi
+  host: userapi-service
   subsets:
     - name: v1
       labels:

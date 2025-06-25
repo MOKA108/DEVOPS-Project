@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userapi-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: userapi
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: userapi
+        version: v2
+    spec:
+      containers:
+        - name: userapi
+          image: mariecb/userapi:latest # Change this if you have a specific v2 image
+          ports:
+            - containerPort: 3000

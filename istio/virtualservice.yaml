@@ -4,16 +4,14 @@ metadata:
   name: userapi
 spec:
   hosts:
-    - "*"
-  gateways:
-    - istio-system/ingressgateway
+    - userapi-service
   http:
     - route:
         - destination:
-            host: userapi
+            host: userapi-service
             subset: v1
           weight: 50
         - destination:
-            host: userapi
+            host: userapi-service
             subset: v2
           weight: 50
