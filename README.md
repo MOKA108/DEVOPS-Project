@@ -116,9 +116,9 @@ This step focuses on setting up and running the application in a developer's loc
      - POST http://localhost:3000/user with JSON body `{ "username": "alice", "firstname": "Alice", "lastname": "Smith" }`
      - GET http://localhost:3000/health
 
- `screenshots/local-start.png`
- `screenshots/local-postmanuser.png`
- `screenshots/local-postmanhealth.png`
+ (screenshots/local-start.png)
+ (screenshots/local-postmanuser.png)
+ (screenshots/local-postmanhealth.png)
 
 ### 2. Automated Testing
 
@@ -128,14 +128,14 @@ From `userapi/`:
 ```bash
 npm test
 ```
- `screenshots/local-test.png`
+ (screenshots/local-test.png)
 ---
 
 ### 3. CI/CD with GitHub Actions
 
 GitHub Actions automates the process of testing, building, and deploying your application. For this project, every major commit triggers the workflow to ensure code quality and up-to-date Docker images. The workflow file is located at `.github/workflows/node.js.yml` and runs tests and builds the Docker image on each push. Docker Hub credentials are required as secrets (see workflow file for details).
 
-`screenshots/workflows.png`
+(screenshots/workflows.png)
 ---
 
 ### 4. VM Provisioning (Vagrant + Ansible)
@@ -151,25 +151,26 @@ This step automates the creation and configuration of a virtual machine for the 
    ```bash
    vagrant up
    ```
-   `screenshots/vagrantup.png`
-   `screenshots/virtualbox.png`
+   (screenshots/vagrantup.png)
+   (screenshots/virtualbox.png
 
 2. VM will be provisioned with Node.js, MySQL, and the app using Ansible (`playbooks/provision.yml`).
 3. SSH into the VM:
    ```bash
    vagrant ssh
    ```
-   `screenshots/vagrantssh.png`
+   (screenshots/vagrantssh.png)
 
 4. Once connected, navigate to the app directory:
    ```bash
    cd /vagrant/userapi
    ```
 5. You can now start the app from this directory. (See Vagrantfile for port mapping.)
-`screenshots/vagrant test.png`
-`screenshots/vagrant start.png`
-`screenshots/vagrant-postmanuser.png`
-`screenshots/vagrant-postmanhealth.png`
+
+(screenshots/vagrant test.png)
+(screenshots/vagrant start.png)
+(screenshots/vagrant-postmanuser.png)
+(screenshots/vagrant-postmanhealth.png)
 
 ---
 
@@ -196,7 +197,8 @@ You can access to the Docker image with this link : https://hub.docker.com/r/mar
    docker push mariecb/userapi:latest
    ```
 
-`screenshots/dockerhub.png`
+(screenshots/dockerhub.png)
+
 ---
 
 ### 6. Kubernetes & Minikube
@@ -224,13 +226,13 @@ This step deploys the application and its database to a Kubernetes cluster, prov
 Below, you can see the application running in Minikube:
 
 - Pods and services:
-  ![Pods and Services](screenshots/minikube1.png)
-  (screenshots/minikube2.png)
+ (screenshots/minikube1.png)
+ (screenshots/minikube2.png)
 - Access via NodePort:
-  ![API Response](screenshots/minikube3.png)
+  (screenshots/minikube3.png)
   (screenshots/minikube4.png)
 - Minikube dashboard:
-  ![Minikube Dashboard](screenshots/minikube5.png)
+  (screenshots/minikube5.png)
   (screenshots/minikube6.png)
 ---
 
@@ -271,11 +273,11 @@ This step integrates Istio to manage and secure traffic within the Kubernetes cl
 7. In Kiali, verify that both versions are visible and that traffic shifting is active. Ignore Grafana/Prometheus errors if you have not installed these addons.
 
 
-`screenshots/pods istio.png`
-`screenshots/sidecar.png`
-`screenshots/kiali-dashboard.png`
-`screenshots/mesh.png`
-`screenshots/dockerhub.png`
+(screenshots/pods istio.png)
+(screenshots/sidecar.png)
+(screenshots/kiali-dashboard.png)
+(screenshots/mesh.png)
+(screenshots/dockerhub.png)
 
 ---
 
