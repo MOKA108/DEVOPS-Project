@@ -162,7 +162,7 @@ This step automates the creation and configuration of a virtual machine for the 
    ```bash
    vagrant ssh
    ```
-   (screenshots/vagrantssh.png)
+   ![Virtual SSH](screenshots/vagrantssh.png)
 
 4. Once connected, navigate to the app directory:
    ```bash
@@ -293,7 +293,6 @@ This step integrates Istio to manage and secure traffic within the Kubernetes cl
 
 ![Istio mesh](screenshots/mesh.png)
 
-![Docker Hub](screenshots/dockerhub.png)
 
 ---
 
