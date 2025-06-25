@@ -117,7 +117,9 @@ This step focuses on setting up and running the application in a developer's loc
      - GET http://localhost:3000/health
 
 ![Local start](screenshots/local-start.png)
+
 ![Postman user](screenshots/local-postmanuser.png)
+
 ![Postman health](screenshots/local-postmanhealth.png)
 
 ### 2. Automated Testing
@@ -151,8 +153,9 @@ This step automates the creation and configuration of a virtual machine for the 
    ```bash
    vagrant up
    ```
-   (screenshots/vagrantup.png)
-   (screenshots/virtualbox.png
+   ![Vagrant Up](screenshots/vagrantup.png)
+  
+   ![Virtual Box](screenshots/virtualbox.png)
 
 2. VM will be provisioned with Node.js, MySQL, and the app using Ansible (`playbooks/provision.yml`).
 3. SSH into the VM:
@@ -167,9 +170,12 @@ This step automates the creation and configuration of a virtual machine for the 
    ```
 5. You can now start the app from this directory. (See Vagrantfile for port mapping.)
 
-![Vagrant test](screenshots/vagrant test.png)
-![Vagrant start](screenshots/vagrant start.png)
+![Vagrant test](screenshots/vagrant-test.png)
+
+![Vagrant start](screenshots/vagrant-start.png)
+
 ![Vagrant Postman user](screenshots/vagrant-postmanuser.png)
+
 ![Vagrant Postman health](screenshots/vagrant-postmanhealth.png)
 
 ---
@@ -227,13 +233,19 @@ Below, you can see the application running in Minikube:
 
 - Pods and services:
  ![Minikube pods 1](screenshots/minikube1.png)
+
  ![Minikube pods 2](screenshots/minikube2.png)
+
 - Access via NodePort:
   ![Minikube NodePort 1](screenshots/minikube3.png)
+
   ![Minikube NodePort 2](screenshots/minikube4.png)
+
 - Minikube dashboard:
   ![Minikube dashboard 1](screenshots/minikube5.png)
+
   ![Minikube dashboard 2](screenshots/minikube6.png)
+
 ---
 
 ### 7. Istio Service Mesh
@@ -273,10 +285,14 @@ This step integrates Istio to manage and secure traffic within the Kubernetes cl
 7. In Kiali, verify that both versions are visible and that traffic shifting is active. Ignore Grafana/Prometheus errors if you have not installed these addons.
 
 
-![Istio pods](screenshots/pods istio.png)
+![Istio pods](screenshots/pods-istio.png)
+
 ![Istio sidecar](screenshots/sidecar.png)
+
 ![Kiali dashboard](screenshots/kiali-dashboard.png)
+
 ![Istio mesh](screenshots/mesh.png)
+
 ![Docker Hub](screenshots/dockerhub.png)
 
 ---
