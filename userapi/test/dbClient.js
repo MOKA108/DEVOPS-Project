@@ -7,6 +7,10 @@
 const { expect } = require('chai')
 let db
 
+before(() => {
+  db = require('../src/dbClient')
+})
+
 describe('Database Client', () => {
   it('should be defined', () => {
     expect(db).to.exist
@@ -16,11 +20,8 @@ describe('Database Client', () => {
     expect(db.getConnection).to.be.a('function')
   })
 })
-describe('MySQL', () => {
-  before(() => {
-    db = require('../src/dbClient')
-  })
 
+describe('MySQL', () => {
   it('should connect to MySQL', (done) => {
     db.getConnection((err, connection) => {
       expect(err).to.be.null
