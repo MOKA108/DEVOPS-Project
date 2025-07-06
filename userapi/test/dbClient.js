@@ -1,10 +1,11 @@
-const { expect } = require('chai')
-let db
-
 // Test suite for the database client
 // This suite tests the database connection functionality of the user API service.
 // It checks if the MySQL database can be connected to successfully.
 // The tests ensure that the database client behaves as expected, allowing for user operations to be performed.
+
+
+const { expect } = require('chai')
+let db
 
 describe('Database Client', () => {
   it('should be defined', () => {
