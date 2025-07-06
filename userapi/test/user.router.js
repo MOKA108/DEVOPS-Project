@@ -5,10 +5,16 @@ const db = require('../src/dbClient')
 
 chai.use(chaiHttp)
 
-describe('User REST API', () => {
+// Test suite for the User REST API
+// This suite tests the user creation, retrieval, and deletion functionalities of the user API service.
+// It checks if users can be created, retrieved by username, and deleted correctly.
+// The tests ensure that the API behaves as expected, returning appropriate status codes and messages.
 
+describe('User REST API', () => {
+// Before running the tests, we need to ensure that the database is clean
+// This is done by deleting all existing users in the 'users' table.
   beforeEach((done) => {
-    // Clean DB before each test
+  
     db.query('DELETE FROM users', done)
   })
 
@@ -19,7 +25,8 @@ describe('User REST API', () => {
   })
 
   describe('POST /user', () => {
-
+// This endpoint is used to create a new user.
+// It expects a JSON object with 'username', 'firstname', and 'lastname' fields.  
     it('create a new user', (done) => {
       const user = {
         username: 'sergkudinov',
@@ -58,12 +65,11 @@ describe('User REST API', () => {
     firstname: 'Alice',
     lastname: 'Liddell'
   }
-  // Crée d'abord l'utilisateur
+
   chai.request(app)
     .post('/user')
     .send(user)
     .end(() => {
-      // Tente de le recréer
       chai.request(app)
         .post('/user')
         .send(user)
@@ -77,15 +83,16 @@ describe('User REST API', () => {
 })
   })
 
-  // Exemple de test GET
-  describe('GET /user/:username', () => {
+
+  describe('GET /user/:username', () => {             // This endpoint retrieves a user by their username.
+                                                      // It returns the user's details if found, or an error if the user does not exist.  
     it('should get a user by username', (done) => {
       const user = {
         username: 'sergkudinov',
         firstname: 'Sergei',
         lastname: 'Kudinov'
       }
-      // Crée d'abord l'utilisateur
+  
       db.query(
         'INSERT INTO users (username, firstname, lastname) VALUES (?, ?, ?)',
         [user.username, user.firstname, user.lastname],
@@ -105,7 +112,7 @@ describe('User REST API', () => {
   it('should not create a user without firstname or lastname', (done) => {
   const user = {
     username: 'jdoe'
-    // firstname et lastname manquants
+   
   }
   chai.request(app)
     .post('/user')
@@ -122,12 +129,12 @@ describe('User REST API', () => {
     firstname: 'John',
     lastname: 'Doe'
   }
-  // Crée d'abord l'utilisateur
+
   chai.request(app)
     .post('/user')
     .send(user)
     .end(() => {
-      // Supprime l'utilisateur
+   
       chai.request(app)
         .delete('/user/jdoe')
         .end((err, res) => {

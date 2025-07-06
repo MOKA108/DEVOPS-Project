@@ -1,5 +1,8 @@
 const db = require('../dbClient')
 
+ // Controller for user operations. This module provides functions to create, retrieve, and delete users in the database.
+// It uses a MySQL database connection to perform these operations and handles errors appropriately.
+
 module.exports = {
   create: (user, callback) => {
   if (!user.username || !user.firstname || !user.lastname) {

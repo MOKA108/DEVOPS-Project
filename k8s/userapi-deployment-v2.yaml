@@ -1,3 +1,6 @@
+#This file defines a Kubernetes deployment for the userapi application version 2.
+# It specifies the deployment configuration, including the number of replicas, selector labels, and container specifications
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,6 +19,6 @@ spec:
     spec:
       containers:
         - name: userapi
-          image: mariecb/userapi:latest # Change this if you have a specific v2 image
+          image: mariecb/userapi:latest 
           ports:
             - containerPort: 3000

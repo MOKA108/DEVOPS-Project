@@ -1,3 +1,7 @@
+#This file defines a VirtualService for the userapi service in Istio.
+# It routes traffic to different versions of the service based on weight distribution.
+
+
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:

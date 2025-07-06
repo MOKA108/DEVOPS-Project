@@ -1,3 +1,6 @@
+#This file defines a Kubernetes service for the userapi application.
+# It exposes the userapi application on port 3000 and uses NodePort to allow external access. 
+
 apiVersion: v1
 kind: Service
 metadata:

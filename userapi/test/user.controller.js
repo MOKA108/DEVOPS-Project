@@ -3,6 +3,11 @@ const { expect } = require('chai')
 const userController = require('../src/controllers/user')
 const db = require('../src/dbClient')
 
+// Test suite for the user controller
+// This suite tests the user creation, retrieval, and deletion functionalities of the user API service. 
+// It checks if users can be created, retrieved by username, and deleted correctly.
+
+
 describe('User', () => {
   beforeEach((done) => {
     db.query('DELETE FROM users', done)
@@ -18,7 +23,6 @@ describe('User', () => {
       userController.create(user, (err, result) => {
         expect(err).to.be.equal(null)
         expect(result).to.be.equal('OK')
-        // Vérifie que l'utilisateur est bien en base
         db.query('SELECT * FROM users WHERE username = ?', [user.username], (err, results) => {
           expect(results).to.have.lengthOf(1)
           expect(results[0].firstname).to.equal('Sergei')
@@ -70,7 +74,6 @@ describe('User', () => {
           firstname: 'Sergei',
           lastname: 'Kudinov'
         }
-        // Insère l'utilisateur avant de tester le get
         db.query(
           'INSERT INTO users (username, firstname, lastname) VALUES (?, ?, ?)',
           [user.username, user.firstname, user.lastname],

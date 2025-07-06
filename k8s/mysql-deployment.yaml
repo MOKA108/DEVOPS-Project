@@ -1,3 +1,8 @@
+#This file defines a MySQL deployment in Kubernetes with persistent storage.
+# It creates a PersistentVolumeClaim for MySQL data storage, a Deployment for the MySQL server,
+# and a Service to expose the MySQL server.
+
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:

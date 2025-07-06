@@ -1,3 +1,6 @@
+#This file defines a Kubernetes deployment for the userapi application.
+# It specifies the deployment configuration, including the number of replicas, selector labels, and container specifications.
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:

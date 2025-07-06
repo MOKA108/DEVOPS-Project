@@ -1,3 +1,24 @@
+#This Vagrantfile sets up a virtual machine with Ubuntu 20.04 (Focal Fossa) and provisions it using Ansible to install Node.js, npm, MySQL, and deploy the userapi application.
+# It forwards port 3000 from the guest to the host machine and syncs the project directory to the VM.
+# The Ansible playbook is located at /home/vagrant/app/playbooks/provision.yml  
+# and is executed with root privileges. The compatibility mode for Ansible is set to 2.0.
+
+# Ensure you have Vagrant and Ansible installed on your machine before running this file.
+# To start the VM, run `vagrant up` in the terminal from the directory containing this Vagrantfile.
+# To provision the VM, run `vagrant provision`.
+# To destroy the VM, run `vagrant destroy`.
+# This Vagrantfile is configured to use Ubuntu 20.04 (Focal Fossa) as the base box.
+# It sets up port forwarding for port 3000, allowing access to the userapi application from the host machine.
+
+# Make sure to have the necessary Ansible roles and dependencies installed before running the playbook.
+# You can install them using `ansible-galaxy install -r requirements.yml` if you have a requirements file.
+
+# This Vagrantfile is designed to work with the userapi application, which is expected to be located in the parent directory of this Vagrantfile.
+# The application files will be synced to the VM at /home/vagrant/app.
+# The Ansible playbook will install the necessary software and set up the environment for the userapi application to run.
+# The playbook will also create the MySQL database schema required for the application to function correctly.
+
+
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/focal64"
   config.vm.network "forwarded_port", guest: 3000, host: 3000

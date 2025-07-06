@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project demonstrates a full DevOps workflow for a Node.js REST API with a MySQL backend. It covers local development, automated testing, CI/CD with GitHub Actions, VM provisioning (Vagrant + Ansible), Dockerization, Kubernetes deployment, and Istio service mesh. The documentation below guides you through each environment and step.
+This project showcases a complete DevOps workflow for a Node.js REST API with a MySQL backend. It covers local development, automated testing, CI/CD with GitHub Actions, VM provisioning using Vagrant and Ansible, Dockerisation, Kubernetes deployment and the Istio service mesh. The documentation below will guide you through each environment and step.
 
 ---
 
@@ -82,7 +82,7 @@ userapi/
 
 ### 1. Local Development
 
-This step focuses on setting up and running the application in a developer's local environment. It allows you to develop, test, and debug the Node.js API before deploying it to other environments. The main tasks include installing dependencies, configuring the database, starting the application, and verifying that the endpoints work as expected. This phase ensures that all core features are functional and that the codebase is ready for further automation and deployment.
+This step involves setting up and running the application in the developer's local environment. This enables you to develop, test and debug the Node.js API prior to deployment to other environments. The main tasks are installing dependencies, configuring the database, starting the application and verifying that the endpoints function correctly. This phase confirms that all core features are operational and that the codebase is ready for further automation and deployment.
 
 #### Prerequisites
 - Node.js (LTS)
@@ -92,7 +92,7 @@ This step focuses on setting up and running the application in a developer's loc
 1. Clone the repository:
    ```bash
    git clone https://github.com/MOKA108/DEVOPS-Project.git
-   cd lab/userapi
+   cd userapi
    ```
 2. Install dependencies:
    ```bash
@@ -113,24 +113,30 @@ This step focuses on setting up and running the application in a developer's loc
    - Use [Postman](https://www.postman.com/) to send requests to your API endpoints (e.g., POST /user, GET /health).
    - Import your API collection or create requests manually in Postman.
    - Example:
-     - POST http://localhost:3000/user with JSON body `{ "username": "alice", "firstname": "Alice", "lastname": "Smith" }`
+     - POST http://localhost:3000/user with JSON body `{ "username": "sergkudinov", "firstname": "Sergei", "lastname": "Kudinov" }`
      - GET http://localhost:3000/health
+
 
 ![Local start](screenshots/local-start.png)
 
+
 ![Postman user](screenshots/local-postmanuser.png)
+
 
 ![Postman health](screenshots/local-postmanhealth.png)
 
+---
+
 ### 2. Automated Testing
 
-This step ensures the reliability and correctness of the application by running automated tests. It covers unit, integration, and API tests using Mocha and Chai. Running these tests helps catch bugs early and validates that all features work as intended before moving to deployment or further automation.
+This step involves running automated tests to ensure the reliability and correctness of the application. These tests cover units, integrations and APIs, and are performed using Mocha and Chai. Running these tests helps to identify bugs early on and confirms that all features are functioning as intended prior to deployment or further automation.
 
 From `userapi/`:
 ```bash
 npm test
 ```
 ![Test results](screenshots/local-test.png)
+
 ---
 
 ### 3. CI/CD with GitHub Actions
@@ -138,11 +144,12 @@ npm test
 GitHub Actions automates the process of testing, building, and deploying your application. For this project, every major commit triggers the workflow to ensure code quality and up-to-date Docker images. The workflow file is located at `.github/workflows/node.js.yml` and runs tests and builds the Docker image on each push. Docker Hub credentials are required as secrets (see workflow file for details).
 
 ![GitHub Actions workflow](screenshots/workflows.png)
+
 ---
 
 ### 4. VM Provisioning (Vagrant + Ansible)
 
-This step automates the creation and configuration of a virtual machine for the application using Vagrant and Ansible. It provisions a Linux VM, installs all required software (Node.js, MySQL, and the app), and sets up the environment to closely match production. This allows for consistent, repeatable deployments and easy testing in an isolated environment.
+This step uses Vagrant and Ansible to automate the creation and configuration of a virtual machine for the application. It provisions a Linux VM, installs all the necessary software (Node.js, MySQL and the application itself) and sets up the environment so that it closely matches the production environment. This enables consistent, repeatable deployments and straightforward testing in an isolated environment.
 
 #### Prerequisites
 - Vagrant
@@ -172,17 +179,21 @@ This step automates the creation and configuration of a virtual machine for the 
 
 ![Vagrant test](screenshots/vagrant-test.png)
 
+
 ![Vagrant start](screenshots/vagrant-start.png)
+
 
 ![Vagrant Postman user](screenshots/vagrant-postmanuser.png)
 
+
 ![Vagrant Postman health](screenshots/vagrant-postmanhealth.png)
+
 
 ---
 
 ### 5. Docker
 
-This step packages the application and its dependencies into a Docker container, ensuring consistency across different environments. By building and running the Docker image, you can easily deploy and test the app locally or in the cloud. Pushing the image to Docker Hub makes it accessible for orchestration platforms like Kubernetes.
+This step involves packaging the application and its dependencies into a Docker container to ensure consistency across different environments. Building and running the Docker image makes it easy to deploy and test the app locally or in the cloud. Pushing the image to Docker Hub makes it available for orchestration platforms such as Kubernetes.
 
 You can access to the Docker image with this link : https://hub.docker.com/r/mariecb/userapi/tags
 
@@ -209,7 +220,7 @@ You can access to the Docker image with this link : https://hub.docker.com/r/mar
 
 ### 6. Kubernetes & Minikube
 
-This step deploys the application and its database to a Kubernetes cluster, providing scalability, resilience, and simplified management. Kubernetes manifests define the deployments, services, and persistent storage, allowing you to orchestrate and monitor your app in a production-like environment.
+This step deploys the application and its database to a Kubernetes cluster, offering scalability, resilience and streamlined management. Kubernetes manifests define deployments, services and persistent storage, enabling you to orchestrate and monitor your application in a production-like environment.
 
 
 #### Prerequisites
@@ -232,6 +243,7 @@ This step deploys the application and its database to a Kubernetes cluster, prov
 Below, you can see the application running in Minikube:
 
 - Pods and services:
+
  ![Minikube pods 1](screenshots/minikube1.png)
 
  ![Minikube pods 2](screenshots/minikube2.png)

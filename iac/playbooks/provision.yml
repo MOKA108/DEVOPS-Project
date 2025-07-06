@@ -1,3 +1,6 @@
+# Ansible playbook to provision a Vagrant VM with Node.js, npm, MySQL, and the userapi application.
+# This playbook installs Node.js, npm, MySQL server, sets up the database and deploys the userapi application. 
+
 - hosts: all
   become: true
   vars:
@@ -7,7 +10,7 @@
       apt:
         update_cache: yes
 
-    # À placer dans ton playbook avant l'installation des dépendances npm
+    
     - name: Add NodeSource Node.js 18.x repo
       apt:
       name: curl
@@ -23,21 +26,22 @@
         name: nodejs
         state: present
         update_cache: yes
-    - name: Mettre à jour npm à la dernière version stable
+
+    - name: Update npm to latest version
       npm:
         name: npm
         global: yes
         state: latest
 
-    - name: Vérifier la version de node
+    - name: Checking Node.js version
       command: node -v
       register: node_version
-  
-    - name: Afficher la version de node
+
+    - name: Display Node.js version
       debug:
        var: node_version.stdout
 
-    - name: Afficher la version de npm
+    - name: Display npm version
       command: npm -v
       register: npm_version
     
@@ -95,7 +99,7 @@
       community.mysql.mysql_db:
         name: lab
         state: import
-        target: /home/vagrant/app/iac/playbooks/schema.sql   # <-- adapte ce chemin si besoin
+        target: /home/vagrant/app/iac/playbooks/schema.sql   
         login_user: root
         login_password: "449217"
         login_host: 127.0.0.1
@@ -104,10 +108,10 @@
 
     - name: Install npm dependencies
       npm:
-        path: /home/vagrant/app/userapi   # <-- adapte ce chemin
+        path: /home/vagrant/app/userapi   
 
     - name: Start the app
       shell: |
         nohup npm start > app.log 2>&1 &
       args:
-        chdir: /home/vagrant/app/userapi   # <-- adapte ce chemin
+        chdir: /home/vagrant/app/userapi   
